@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.langflow.org/extension/v1.json",
+  "id": "lfx-enconvert",
+  "version": "0.0.1",
+  "name": "EnConvert",
+  "description": "EnConvert bundle for Langflow: perceive URLs, search the web, discover URLs, extract structured data, and convert files — every read scored with render_quality.",
+  "lfx": {
+    "compat": ["1"]
+  },
+  "bundles": [
+    {
+      "name": "enconvert",
+      "path": "components/enconvert"
+    }
+  ]
+}

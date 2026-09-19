@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lfx-enconvert"
+version = "0.0.1"
+description = "EnConvert bundle for Langflow: perceive URLs, search the web, discover URLs, extract structured data, and convert files — every read scored with render_quality."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "EnConvert", email = "support@enconvert.com" }]
+keywords = ["langflow", "lfx", "enconvert", "bundle", "components", "rag", "web", "markdown"]
+dependencies = [
+    "lfx<2.0.0",
+    "requests>=2.28",
+]
+
+[project.urls]
+Homepage = "https://www.enconvert.com"
+Documentation = "https://www.enconvert.com/docs"
+Repository = "https://github.com/enconvert/lfx-enconvert"
+
+# Langflow discovers installed extension bundles at server start through this entry point.
+# Editable installs whose dist.files only surface dist-info entries fall back to this
+# entry point to locate the extension.json manifest.
+[project.entry-points."langflow.extensions"]
+lfx-enconvert = "lfx_enconvert"
+
+[tool.hatch.build.targets.wheel]
+# extension.json + the component files must live inside the lfx_enconvert package so
+# importlib.metadata.files(dist) finds the manifest and the loader resolves
+# bundles[].path relative to it. The explicit include guarantees the JSON ships.
+packages = ["src/lfx_enconvert"]
+include = ["src/lfx_enconvert/extension.json", "src/lfx_enconvert/components/**/*.py"]
